@@ -6,10 +6,12 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+const id=process.env.CLIENT_ID;
+console.log();
 root.render(
   <Router>
     <React.StrictMode>
-      <GoogleOAuthProvider clientId="627131070518-te5s1qvi8vgatcc5pirfehcogmhf5362.apps.googleusercontent.com">
+      <GoogleOAuthProvider clientId={id}>
         <App />
       </GoogleOAuthProvider>
       ;
