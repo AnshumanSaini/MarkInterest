@@ -5,9 +5,9 @@ import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
+const id=process.env.REACT_APP_CLIENT_ID;
 const root = ReactDOM.createRoot(document.getElementById("root"));
-const id=process.env.CLIENT_ID;
-console.log();
+
 root.render(
   <Router>
     <React.StrictMode>

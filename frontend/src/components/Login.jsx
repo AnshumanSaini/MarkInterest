@@ -3,9 +3,11 @@ import logo from "../assets/logo.png";
 import video from "../assets/share.mp4";
 import { useNavigate } from 'react-router';
 import { GoogleLogin } from "@react-oauth/google";
+import { jwtDecode } from "jwt-decode";
 
 function Login() {
   const navigate = useNavigate();
+  
   return (
     <div className="flex justify-start items-center flex-col h-screen">
       <div className="relative w-full h-full">
@@ -24,7 +26,16 @@ function Login() {
           </div>
           <div className="shadow-2xl">
             <GoogleLogin
-              onSuccess={() => {
+              onSuccess={(response) => {
+                console.log(response);
+                const decode=jwtDecode(response.credential);
+                const draft={
+                  _id: decode.email,
+                  _type: 'user',
+                  userName: decode.given_name,
+                  image: decode.picture,
+                }
+                console.log(draft);
                 navigate("/");
               }}
               onError={() => {
