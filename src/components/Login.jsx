@@ -7,21 +7,38 @@ import { jwtDecode } from "jwt-decode";
 
 function Login() {
   const navigate = useNavigate();
-  const afterLogin = (response) => { 
+  const afterLogin = async (response) => { 
     
     console.log(response);
     const decode = jwtDecode(response.credential);
+    console.log(decode);
+    const res = await fetch("http://localhost:5000/api/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: decode.name,
+        email: decode.email,
+        image: decode.picture,
+      }),
+    });
+    console.log({name: decode.name,
+      email: decode.email,
+      image: decode.picture})
 
-    const draft = {
-      _id: decode.clientId,
-      _type: "user",
-      userName: decode.given_name,
-      image: decode.picture,
-    };
-    console.log(draft);
-
-    navigate("/");
-  };
+    const json = await res.json();
+    console.log(json);
+    if (json !== null) {
+      //Save the auth-token and redirect.
+      localStorage.setItem("token", json.token);
+      navigate("/");
+      console.log("Logged in Successfully");
+  }
+  else{
+    console.log("Invalid Credentials");
+  }
+}
   return (
     <div className="flex justify-start items-center flex-col h-screen">
       <div className="relative w-full h-full">

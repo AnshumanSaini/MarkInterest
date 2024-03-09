@@ -3,8 +3,9 @@ const router = express.Router();
 const User = require("../models/user");
 const { body, validationResult } = require("express-validator");
 const jwt = require("jsonwebtoken");
+const fetchuser = require("../middleware/fetchuser");
 
-const JWT_SEECRET = "anshumanIsGreat";
+const JWT_SECRET = "anshumanIsGreat";
 
 router.post("/login", body("email").isEmail(), async (req, res) => {
   try {
@@ -16,21 +17,35 @@ router.post("/login", body("email").isEmail(), async (req, res) => {
       const user = User(req.body);
       const find = await User.findOne({ email: req.body.email });
       console.log(find);
-      if (find != null) return res.send("user already exists!!!!!!!!!!");
+      if (find != null) {
+        const payload = {
+          user: user._id,
+        };
+        const token = jwt.sign(payload, JWT_SECRET);
+        return res.send({ token });
+      }
 
       const saved = await user.save();
       console.log("Successfully saved the entry...");
       const payload = {
-        user: {
-          _id: saved._id,
-        },
+        user: saved._id,
       };
-      const token = jwt.sign(payload, JWT_SEECRET);
+      const token = jwt.sign(payload, JWT_SECRET);
       res.send({ token });
     }
   } catch (err) {
     console.log(err);
     res.status(500).send("Some error occured");
+  }
+});
+
+router.get("/getuser", fetchuser, async (req, res) => {
+  try {
+    const user = await User.findById(req.user);
+    if (user == null) console.log("not found");
+    res.send(user);
+  } catch (err) {
+    res.send(err);
   }
 });
 
