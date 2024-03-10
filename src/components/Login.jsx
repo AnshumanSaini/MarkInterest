@@ -9,9 +9,11 @@ function Login() {
   const navigate = useNavigate();
   const afterLogin = async (response) => { 
     
-    console.log(response);
+    // console.log(response);
     const decode = jwtDecode(response.credential);
-    console.log(decode);
+    // console.log(decode);
+    
+    //Making API request to make user........
     const res = await fetch("http://localhost:5000/api/auth/login", {
       method: "POST",
       headers: {
@@ -23,12 +25,9 @@ function Login() {
         image: decode.picture,
       }),
     });
-    console.log({name: decode.name,
-      email: decode.email,
-      image: decode.picture})
 
     const json = await res.json();
-    console.log(json);
+    // console.log(json);
     if (json !== null) {
       //Save the auth-token and redirect.
       localStorage.setItem("token", json.token);
