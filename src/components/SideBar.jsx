@@ -56,11 +56,20 @@ const SideBar = ({ userData, closeToggle }) => {
               }
             >
               {item.name} 
-              1:40
             </NavLink>
           ))}
         </div>
       </div>
+      {userData && (
+        <Link
+        to={`user-profile/${userData._id}`}
+        className="flex my-5 mb-3 gap-2 p-2 items-center bg-white rounded-lg shadow-lg mx-3"
+        onClick={handleCloseSidebar}
+        >
+          <img src={userData.image} alt="user-profile" className="w-10 h-10 rounded-full" />
+          <p>{userData.name}</p>
+        </Link>
+      )}
     </div>
   );
 };
