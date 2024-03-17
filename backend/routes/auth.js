@@ -41,15 +41,18 @@ router.post("/login", body("email").isEmail(), async (req, res) => {
 
 router.get("/getuser", fetchuser, async (req, res) => {
   try {
+    console.log("output is"+req.user);
     const user = await User.findById(req.user);
     if (user == null) 
     {
       console.log("not found");
       res.send(false);
+      return;
     }
     res.send(user);
   } catch (err) {
-    res.send(err);
+    console.log(err);
+    res.status(500).send("Some error occured");
   }
 });
 

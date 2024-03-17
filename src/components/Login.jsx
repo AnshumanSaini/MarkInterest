@@ -30,6 +30,7 @@ function Login() {
     // console.log(json);
     if (json !== null) {
       //Save the auth-token and redirect.
+      localStorage.clear();
       localStorage.setItem("token", json.token);
       navigate("/");
       console.log("Logged in Successfully");

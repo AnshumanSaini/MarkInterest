@@ -19,7 +19,7 @@ const UserSchema = new Schema({
         require: true,
     },
     image: {
-        type: Buffer,
+        type: String,
         require: true,
     },
     user_id: {
@@ -41,6 +41,7 @@ const UserSchema = new Schema({
         type: String,
         require: true,
     }
-})
+},{ suppressReservedKeysWarning: true });
+
 const pin = mongoose.model("pin", UserSchema);
 module.exports = pin;
