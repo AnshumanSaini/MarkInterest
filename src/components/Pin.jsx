@@ -12,14 +12,14 @@ const Pin = ({ pin, userData }) => {
   let currUser = localStorage.getItem("token");
   // console.log(userData);
 
-  let alreadySaved = !!pin?.save?.filter((item) => item === userData.email)
+  let alreadySaved = !!pin?.save?.filter((item) => item === userData?.email)
     ?.length;
   // console.log({alreadySaved});
 
   //delte the pin by the author
   const deletePin = () => {
     const addUserToSave = async () => {
-      console.log(userData.email);
+      console.log(userData?.email);
       const response = await fetch("http://localhost:5000/api/pin/deletepin", {
         method: "DELETE",
         headers: {
@@ -46,7 +46,7 @@ const Pin = ({ pin, userData }) => {
   const savePin = () => {
     if (!alreadySaved) {
       const addUserToSave = async () => {
-        console.log(userData.email);
+        console.log(userData?.email);
         const response = await fetch("http://localhost:5000/api/pin/markpin", {
           method: "POST",
           headers: {
@@ -54,7 +54,7 @@ const Pin = ({ pin, userData }) => {
             "auth-token": currUser,
           },
           body: JSON.stringify({
-            value: userData.email,
+            value: userData?.email,
             id: pin._id,
           }),
         });
@@ -132,7 +132,7 @@ const Pin = ({ pin, userData }) => {
                     : pin.destination}
                 </a>
               )}
-              {pin.posted_by === userData.email && (
+              {pin.posted_by === userData?.email && (
                 <button
                   type="button"
                   onClick={(e) => {

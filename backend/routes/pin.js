@@ -70,4 +70,34 @@ router.delete("/deletepin", fetchuser, async (req, res)=>{
       }
 })
 
+router.get('/getpin', fetchuser, async (req, res)=>{
+  try
+  {
+    const doc = await Pin.findById(req.header("id"));
+    res.json({message: "pin found", doc});
+  }
+  catch (error) { 
+    console.error("Error:", error);
+    res.status(500).json({ message: "Error adding value to array" });
+  }
+})
+
+router.post('/addcomment', fetchuser, async (req, res)=>{
+  const newValue = req.body.value;
+  console.log(newValue);
+  try {
+    // Find the document where you want to add the value
+    const doc = await Pin.findOneAndUpdate(
+      { _id: req.body.id },
+      { $push: { comments: newValue } },
+      { new: true }
+    );
+    res.json({ message: "Value added successfully", updatedDocument: doc });
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ message: "Error adding value to array" });
+  }
+
+})
+
 module.exports = router;
