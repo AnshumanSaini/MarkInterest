@@ -7,7 +7,7 @@
     "nodemon": "^3.1.0"
   },
   "scripts": {
-    "build": "npm i",
+    "build": "npm install",
     "start": "node index.js"
   }
 }
