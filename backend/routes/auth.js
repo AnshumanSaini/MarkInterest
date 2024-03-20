@@ -14,17 +14,10 @@ router.post("/login", body("email").isEmail(), async (req, res) => {
       res.send({ errors: result.array() });
     } else {
       // res.json(req.body);
+      const find = await User.deleteOne({ email: req.body.email });
       const user = User(req.body);
-      const find = await User.findOne({ email: req.body.email });
-      console.log(find);
-      if (find != null) {
-        const payload = {
-          user: user._id,
-        };
-        const token = jwt.sign(payload, JWT_SECRET);
-        return res.send({ token });
-      }
-
+      console.log({ find });
+      console.log("this is running!!!!!!!!!!");
       const saved = await user.save();
       console.log("Successfully saved the entry...");
       const payload = {
@@ -41,10 +34,9 @@ router.post("/login", body("email").isEmail(), async (req, res) => {
 
 router.get("/getuser", fetchuser, async (req, res) => {
   try {
-    console.log("output is"+req.user);
+    console.log("output is" + req.user);
     const user = await User.findById(req.user);
-    if (user == null) 
-    {
+    if (user == null) {
       console.log("not found");
       res.send(false);
       return;

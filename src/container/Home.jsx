@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import SideBar from "../components/SideBar";
-import userProfile from "../components/UserProfile";
+import UserProfile from "../components/UserProfile";
 import logo from "../assets/logo.png";
 import Pins from "./Pins";
 import { HiMenu } from "react-icons/hi";
@@ -80,8 +80,8 @@ const Home = () => {
       </div>
       <div className="pb-2 flex-1 h-screen overflow-y-scrol" ref={scrollRef}>
         <Routes>
-          <Route path="/user-profile:userId" element={<userProfile />} />
-          <Route path="/*" element={<Pins userData={userData && userData} />} />
+          <Route path="/user-profile/:userId" element={<UserProfile userData={userData} />} />
+          <Route path="/*" element={<Pins userData={userData} />} />
         </Routes>
       </div>
     </div>
