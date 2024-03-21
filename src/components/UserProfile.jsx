@@ -29,7 +29,7 @@ const UserProfile = ({ userData }) => {
     {
       //API to fetch the pins created by user
       const createdPins = async () => {
-        const response = await fetch("http://localhost:5000/api/pin/getcreatedpins", {
+        const response = await fetch("https://markinterest.onrender.com/api/pin/getcreatedpins", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -52,7 +52,7 @@ const UserProfile = ({ userData }) => {
     {
       //API to fetch the pins saved by user
       const savedPins = async () => {
-        const response = await fetch("http://localhost:5000/api/pin/getsavedpins", {
+        const response = await fetch("https://markinterest.onrender.com/api/pin/getsavedpins", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

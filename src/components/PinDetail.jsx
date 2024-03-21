@@ -23,7 +23,7 @@ const PinDetail = ({ userData }) => {
 
   const fetchPinData = async () => {
     //get a specific pin detail and set into setpinDetail
-    let response = await fetch("http://localhost:5000/api/pin/getpin", {
+    let response = await fetch("https://markinterest.onrender.com/api/pin/getpin", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -41,7 +41,7 @@ const PinDetail = ({ userData }) => {
 
     //get the pins with the same category and set into setPins
     response = await fetch(
-      `http://localhost:5000/api/pin/getpin/${json?.doc?.category}`,
+      `https://markinterest.onrender.com/api/pin/getpin/${json?.doc?.category}`,
       {
         method: "GET",
         headers: {
@@ -61,7 +61,7 @@ const PinDetail = ({ userData }) => {
   };
 
   const addComment = async () => {
-    const response = await fetch("http://localhost:5000/api/pin/addcomment", {
+    const response = await fetch("https://markinterest.onrender.com/api/pin/addcomment", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

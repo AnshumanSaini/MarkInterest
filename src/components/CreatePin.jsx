@@ -115,7 +115,7 @@ const CreatePin = ({ userData }) => {
     if (title && about && destination && imageasset && category) {
       //to save the pin in the database
       let currUser = localStorage.getItem("token");
-      const res = await fetch("http://localhost:5000/api/pin/savepin", {
+      const res = await fetch("https://markinterest.onrender.com/api/pin/savepin", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

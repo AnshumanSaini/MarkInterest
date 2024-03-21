@@ -14,7 +14,7 @@ function Login() {
     // console.log(decode);
     
     //Making API request to make user........
-    const res = await fetch("http://localhost:5000/api/auth/login", {
+    const res = await fetch("https://markinterest.onrender.com/api/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

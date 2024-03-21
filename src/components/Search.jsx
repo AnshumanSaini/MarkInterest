@@ -12,7 +12,7 @@ const Search = ({searchTerm, setsearchTerm, userData}) => {
     if(searchTerm){
       setLoading(true);
       const getSpecificPin = async () => {
-        const response = await fetch(`http://localhost:5000/api/pin/getpin/${searchTerm.toLowerCase()}`, {
+        const response = await fetch(`https://markinterest.onrender.com/api/pin/getpin/${searchTerm.toLowerCase()}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -34,7 +34,7 @@ const Search = ({searchTerm, setsearchTerm, userData}) => {
       
     }else{
       const fetchData = async () => {
-        const response = await fetch('http://localhost:5000/api/pin/getallpin', {
+        const response = await fetch('https://markinterest.onrender.com/api/pin/getallpin', {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

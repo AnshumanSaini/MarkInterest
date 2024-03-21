@@ -16,7 +16,7 @@ const Feed = ({ userData }) => {
       //fetch specific category feeds
       // console.log("if is running");
       const fetchData = async () => {
-        const response = await fetch(`http://localhost:5000/api/pin/getpin/${categoryId}`, {
+        const response = await fetch(`https://markinterest.onrender.com/api/pin/getpin/${categoryId}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -41,7 +41,7 @@ const Feed = ({ userData }) => {
       // console.log("else is running");
       //fetch general category feeds
       const fetchData = async () => {
-        const response = await fetch('http://localhost:5000/api/pin/getallpin', {
+        const response = await fetch('https://markinterest.onrender.com/api/pin/getallpin', {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

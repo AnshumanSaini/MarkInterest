@@ -20,7 +20,7 @@ const Pin = ({ pin, userData }) => {
   const deletePin = () => {
     const addUserToSave = async () => {
       console.log(userData?.email);
-      const response = await fetch("http://localhost:5000/api/pin/deletepin", {
+      const response = await fetch("https://markinterest.onrender.com/api/pin/deletepin", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -47,7 +47,7 @@ const Pin = ({ pin, userData }) => {
     if (!alreadySaved) {
       const addUserToSave = async () => {
         console.log(userData?.email);
-        const response = await fetch("http://localhost:5000/api/pin/markpin", {
+        const response = await fetch("https://markinterest.onrender.com/api/pin/markpin", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
